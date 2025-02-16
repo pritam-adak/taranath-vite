@@ -68,6 +68,7 @@ export default {
           400: "#ff9c97",
           500: "#ff7b74",
           600: "#ff4d44",
+          700: "#ff2d22", // Added coral-700 color
         },
       },
       borderRadius: {
