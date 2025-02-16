@@ -72,7 +72,12 @@
 }
 
 .upload-area {
-  @apply relative w-full h-[120px] rounded-xl border-2 border-dashed border-mystic-200 bg-mystic-100 hover:bg-mystic-200/50 transition-all duration-200 cursor-pointer overflow-hidden;
+  @apply relative w-full h-[120px] rounded-xl border-2 border-dashed border-mystic-200 bg-mystic-100 
+    hover:bg-mystic-200/50 transition-all duration-200 cursor-pointer overflow-hidden;
+}
+
+.upload-area.dragging {
+  @apply border-mystic-400 bg-mystic-200/50;
 }
 
 .upload-content {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Camera, Star, MessageSquare, User } from "lucide-react";
 import { toast } from "sonner";
 import ReadingResults from "@/components/ReadingResults";
@@ -13,14 +13,51 @@ const Index = () => {
   });
 
   const [previewUrl, setPreviewUrl] = useState("");
+  const [isDragging, setIsDragging] = useState(false);
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setFormData({ ...formData, palmImage: file });
-      setPreviewUrl(URL.createObjectURL(file));
+      handleFile(file);
     }
   };
+
+  const handleFile = (file: File) => {
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please upload an image file');
+      return;
+    }
+    setFormData({ ...formData, palmImage: file });
+    setPreviewUrl(URL.createObjectURL(file));
+  };
+
+  const handleDragEnter = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(true);
+  }, []);
+
+  const handleDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+  }, []);
+
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  }, []);
+
+  const handleDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      handleFile(file);
+    }
+  }, []);
 
   const [showResults, setShowResults] = useState(false);
   const [readingResults, setReadingResults] = useState({
@@ -143,7 +180,13 @@ const Index = () => {
                     Palm Image
                     <span className="required-asterisk">*</span>
                   </label>
-                  <div className="upload-area">
+                  <div 
+                    className={`upload-area ${isDragging ? 'border-mystic-400 bg-mystic-200/50' : ''}`}
+                    onDragEnter={handleDragEnter}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                  >
                     <input
                       type="file"
                       accept="image/*"
@@ -159,7 +202,7 @@ const Index = () => {
                     ) : (
                       <div className="upload-content">
                         <Camera className="w-5 h-5" />
-                        <span>Upload Image</span>
+                        <span>Drop image here or click to upload</span>
                       </div>
                     )}
                   </div>
@@ -167,6 +210,7 @@ const Index = () => {
               </div>
             </div>
 
+            {/* Additional Details section */}
             <div>
               <h3 className="section-title">
                 <Star className="w-4 h-4" />
