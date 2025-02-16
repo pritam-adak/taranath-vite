@@ -32,146 +32,155 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-mystic-100 to-mystic-200 py-8 px-4">
-      <div className="text-center mb-8 animate-fade-in">
-        <h1 className="text-4xl font-bold text-mystic-600 mb-2">
+    <div className="min-h-screen bg-gradient-to-b from-mystic-100 to-mystic-200 py-4 px-4">
+      <div className="text-center mb-6 animate-fade-in">
+        <h1 className="text-3xl font-bold text-mystic-600 mb-1">
           Taranath Tantrik
         </h1>
-        <div className="inline-block px-6 py-2 bg-mystic-400/10 rounded-full">
-          <h2 className="text-xl text-mystic-500">Mystical Palm Reading</h2>
+        <div className="inline-block px-4 py-1 bg-mystic-400/10 rounded-full">
+          <h2 className="text-lg text-mystic-500">Mystical Palm Reading</h2>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="palm-form">
-        <div>
-          <h3 className="section-title">
-            <User className="w-6 h-6" />
-            Basic Information
-          </h3>
-          <div className="space-y-6">
-            <div className="form-group">
-              <label className="input-label">
-                Full Name
-                <span className="required-asterisk">*</span>
-              </label>
-              <input
-                type="text"
-                className="form-input"
-                value={formData.fullName}
-                onChange={(e) =>
-                  setFormData({ ...formData, fullName: e.target.value })
-                }
-                placeholder="Enter your full name"
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label className="input-label">
-                Date of Birth
-                <span className="required-asterisk">*</span>
-              </label>
-              <input
-                type="date"
-                className="form-input"
-                value={formData.dateOfBirth}
-                onChange={(e) =>
-                  setFormData({ ...formData, dateOfBirth: e.target.value })
-                }
-                required
-              />
-            </div>
-
-            <div className="form-group">
-              <label className="input-label">
-                Palm Image
-                <span className="required-asterisk">*</span>
-              </label>
-              <div className="upload-area">
+        <div className="space-y-6">
+          <div>
+            <h3 className="section-title">
+              <User className="w-5 h-5" />
+              Basic Information
+            </h3>
+            
+            {/* Name and DOB row */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="form-group">
+                <label className="input-label">
+                  Full Name
+                  <span className="required-asterisk">*</span>
+                </label>
                 <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  type="text"
+                  className="form-input"
+                  value={formData.fullName}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fullName: e.target.value })
+                  }
+                  placeholder="Enter your full name"
+                  required
                 />
-                {previewUrl ? (
-                  <img
-                    src={previewUrl}
-                    alt="Palm preview"
-                    className="w-full h-full object-cover"
+              </div>
+
+              <div className="form-group">
+                <label className="input-label">
+                  Date of Birth
+                  <span className="required-asterisk">*</span>
+                </label>
+                <input
+                  type="date"
+                  className="form-input"
+                  value={formData.dateOfBirth}
+                  onChange={(e) =>
+                    setFormData({ ...formData, dateOfBirth: e.target.value })
+                  }
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Palm Image row */}
+            <div className="mt-4">
+              <div className="form-group">
+                <label className="input-label">
+                  Palm Image
+                  <span className="required-asterisk">*</span>
+                </label>
+                <div className="upload-area h-[150px]">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   />
-                ) : (
-                  <div className="upload-content">
-                    <Camera className="w-8 h-8" />
-                    <span>Change Image</span>
-                  </div>
-                )}
+                  {previewUrl ? (
+                    <img
+                      src={previewUrl}
+                      alt="Palm preview"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="upload-content">
+                      <Camera className="w-6 h-6" />
+                      <span>Upload Image</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 className="section-title">
+              <Star className="w-5 h-5" />
+              Additional Details
+            </h3>
+            
+            {/* Rashi and Language row */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="form-group">
+                <label className="input-label">
+                  Rashi (Optional)
+                </label>
+                <div className="select-wrapper">
+                  <select
+                    className="select-input"
+                    value={formData.rashi}
+                    onChange={(e) =>
+                      setFormData({ ...formData, rashi: e.target.value })
+                    }
+                  >
+                    <option value="">Select Rashi</option>
+                    <option value="aries">Aries (Mesh)</option>
+                    <option value="taurus">Taurus (Vrishabh)</option>
+                    <option value="gemini">Gemini (Mithun)</option>
+                    <option value="cancer">Cancer (Kark)</option>
+                    <option value="leo">Leo (Singh)</option>
+                    <option value="virgo">Virgo (Kanya)</option>
+                    <option value="libra">Libra (Tula)</option>
+                    <option value="scorpio">Scorpio (Vrishchik)</option>
+                    <option value="sagittarius">Sagittarius (Dhanu)</option>
+                    <option value="capricorn">Capricorn (Makar)</option>
+                    <option value="aquarius">Aquarius (Kumbh)</option>
+                    <option value="pisces">Pisces (Meen)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label className="input-label">
+                  Language
+                </label>
+                <div className="select-wrapper">
+                  <select
+                    className="select-input"
+                    value={formData.language}
+                    onChange={(e) =>
+                      setFormData({ ...formData, language: e.target.value })
+                    }
+                  >
+                    <option value="">Select Language</option>
+                    <option value="english">English</option>
+                    <option value="hindi">Hindi</option>
+                    <option value="bengali">Bengali</option>
+                    <option value="marathi">Marathi</option>
+                    <option value="tamil">Tamil</option>
+                    <option value="telugu">Telugu</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div>
-          <h3 className="section-title">
-            <Star className="w-6 h-6" />
-            Additional Details
-          </h3>
-          <div className="space-y-6">
-            <div className="form-group">
-              <label className="input-label">
-                Rashi (Optional)
-              </label>
-              <div className="select-wrapper">
-                <select
-                  className="select-input"
-                  value={formData.rashi}
-                  onChange={(e) =>
-                    setFormData({ ...formData, rashi: e.target.value })
-                  }
-                >
-                  <option value="">Select your Rashi</option>
-                  <option value="aries">Aries (Mesh)</option>
-                  <option value="taurus">Taurus (Vrishabh)</option>
-                  <option value="gemini">Gemini (Mithun)</option>
-                  <option value="cancer">Cancer (Kark)</option>
-                  <option value="leo">Leo (Singh)</option>
-                  <option value="virgo">Virgo (Kanya)</option>
-                  <option value="libra">Libra (Tula)</option>
-                  <option value="scorpio">Scorpio (Vrishchik)</option>
-                  <option value="sagittarius">Sagittarius (Dhanu)</option>
-                  <option value="capricorn">Capricorn (Makar)</option>
-                  <option value="aquarius">Aquarius (Kumbh)</option>
-                  <option value="pisces">Pisces (Meen)</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label className="input-label">
-                Language
-              </label>
-              <div className="select-wrapper">
-                <select
-                  className="select-input"
-                  value={formData.language}
-                  onChange={(e) =>
-                    setFormData({ ...formData, language: e.target.value })
-                  }
-                >
-                  <option value="">Select Language</option>
-                  <option value="english">English</option>
-                  <option value="hindi">Hindi</option>
-                  <option value="bengali">Bengali</option>
-                  <option value="marathi">Marathi</option>
-                  <option value="tamil">Tamil</option>
-                  <option value="telugu">Telugu</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-4 pt-4">
+        <div className="space-y-3 pt-4">
           <button type="submit" className="primary-button">
             <Star className="w-5 h-5 inline-block mr-2" />
             Get Reading

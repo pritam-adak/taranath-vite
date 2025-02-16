@@ -49,19 +49,19 @@
 }
 
 .palm-form {
-  @apply max-w-md mx-auto p-6 space-y-8 bg-white rounded-[2rem] shadow-lg animate-fade-in;
+  @apply max-w-2xl mx-auto p-4 space-y-4 bg-white rounded-[1.5rem] shadow-lg animate-fade-in;
 }
 
 .section-title {
-  @apply text-2xl font-semibold mb-6 text-mystic-400 flex items-center gap-2;
+  @apply text-xl font-semibold mb-4 text-mystic-400 flex items-center gap-2;
 }
 
 .form-group {
-  @apply space-y-2;
+  @apply space-y-1.5;
 }
 
 .input-label {
-  @apply text-lg font-medium text-mystic-400;
+  @apply text-base font-medium text-mystic-400;
 }
 
 .required-asterisk {
@@ -69,11 +69,11 @@
 }
 
 .form-input {
-  @apply w-full px-4 py-3 rounded-xl border border-mystic-200 bg-white focus:outline-none focus:ring-2 focus:ring-mystic-400/50 transition-all duration-200;
+  @apply w-full px-4 py-2.5 rounded-xl border border-mystic-200 bg-white focus:outline-none focus:ring-2 focus:ring-mystic-400/50 transition-all duration-200;
 }
 
 .upload-area {
-  @apply relative w-full aspect-[2/1] rounded-xl border-2 border-dashed border-mystic-200 bg-mystic-100 hover:bg-mystic-200/50 transition-all duration-200 cursor-pointer overflow-hidden;
+  @apply relative w-full rounded-xl border-2 border-dashed border-mystic-200 bg-mystic-100 hover:bg-mystic-200/50 transition-all duration-200 cursor-pointer overflow-hidden;
 }
 
 .upload-content {
@@ -81,7 +81,7 @@
 }
 
 .primary-button {
-  @apply w-full py-4 px-6 rounded-xl font-semibold text-white text-lg transition-all duration-200 
+  @apply w-full py-3 px-6 rounded-xl font-semibold text-white text-base transition-all duration-200 
     bg-gradient-to-r from-coral-400 to-coral-500 
     hover:from-coral-500 hover:to-coral-600 
     active:from-coral-600 active:to-coral-700
@@ -90,7 +90,7 @@
 }
 
 .secondary-button {
-  @apply w-full py-4 px-6 rounded-xl font-semibold text-white text-lg transition-all duration-200
+  @apply w-full py-3 px-6 rounded-xl font-semibold text-white text-base transition-all duration-200
     bg-gradient-to-r from-mystic-400 to-mystic-500
     hover:from-mystic-500 hover:to-mystic-600
     active:from-mystic-600 active:to-mystic-700
@@ -99,7 +99,7 @@
 }
 
 .select-input {
-  @apply w-full px-4 py-3 rounded-xl border border-mystic-200 bg-white 
+  @apply w-full px-4 py-2.5 rounded-xl border border-mystic-200 bg-white 
     focus:outline-none focus:ring-2 focus:ring-mystic-400/50 
     transition-all duration-200 appearance-none;
 }
